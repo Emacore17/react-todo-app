@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Todo from "./components/Todo";
 
 function App() {
   const [name, setName] = useState("");
@@ -51,22 +52,7 @@ function App() {
       {error && <p className="text-red-500">Il todo deve essere compilato</p>}
       {todos &&
         todos.map((todo, index) => (
-          <div key={index} className="flex">
-            <p
-              onClick={() => changeDone(index)}
-              className={
-                todo.isDone ? "cursor-pointer line-through" : "cursor-pointer"
-              }
-            >
-              {todo.name}
-            </p>
-            <button
-              onClick={() => deleteTodo(index)}
-              className="bg-red-500 ml-2"
-            >
-              ELIMINA
-            </button>
-          </div>
+          <Todo key={index}  item={todo} index={index} changeDone={changeDone} deleteTodo={deleteTodo} />
         ))}
     </main>
   );
